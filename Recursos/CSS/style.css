@@ -1,0 +1,8 @@
+body {
+    font-family: 'Calibri', sans-serif;
+}
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+}
+
