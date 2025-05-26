@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     font-family: 'Cinzel', serif;
 }
@@ -6,3 +7,13 @@ body {
     object-fit: cover;
 }
 
+=======
+body {
+    font-family: 'Calibri', sans-serif;
+}
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+}
+
+>>>>>>> 8eca89bdb6dad3795d9ee517ca01f3df8892e79f
