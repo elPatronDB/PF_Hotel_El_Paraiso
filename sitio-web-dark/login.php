@@ -16,17 +16,18 @@
                     <div class="card-body">
                         <h3 class="card-title text-center" style="font-family: 'Cinzel', serif;">Iniciar Sesión</h3>
                         <?php
+                        include 'db_connect.php';
                         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $usuario = $_POST['usuario'];
-                            $contrasena = $_POST['contrasena'];
-                            // Fase 1: Login estático
-                            if ($usuario === 'admin' && $contrasena === 'admin') {
+                            $contrasena = md5($_POST['contrasena']);
+                            $query = "SELECT * FROM empleado WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
+                            $result = mysqli_query($conn, $query);
+                            if (mysqli_num_rows($result) > 0) {
                                 header('Location: dashboard.php');
                                 exit;
                             } else {
                                 echo '<div class="alert alert-danger">Usuario o contraseña incorrectos</div>';
                             }
-                            // Fase 2: Reemplazar por consulta a MySQL (ver sitio-web-light/login.php o sitio-web-dark/login.php)
                         }
                         ?>
                         <form method="POST">

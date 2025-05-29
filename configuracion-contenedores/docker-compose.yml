@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  web-light:
+    build:
+      context: ../sitio-web-light
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - hotel-network
+    depends_on:
+      - mysql
+
+  web-dark:
+    build:
+      context: ../sitio-web-dark
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    networks:
+      - hotel-network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hotel_el_paraiso
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - hotel-network
+
+  haproxy:
+    image: haproxy:latest
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+      - "80:80"
+    networks:
+      - hotel-network
+    depends_on:
+      - web-light
+      - web-dark
+
+networks:
+  hotel-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
