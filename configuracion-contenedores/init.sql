@@ -35,5 +35,5 @@ CREATE TABLE reserva (
     FOREIGN KEY (id_habitacion) REFERENCES habitacion(id_habitacion)
 );
 
-INSERT INTO empleado (nombre, usuario, contrasena) VALUES ('Admin', 'admin', MD5('admin123'));
+INSERT INTO empleado (nombre, usuario, contrasena) VALUES ('Admin', 'admin',  ('admin123'));
 INSERT INTO habitacion (numero, estado) VALUES (1, 'Vacía'), (2, 'Vacía'), (3, 'Vacía'), (4, 'Vacía'), (5, 'Vacía'), (6, 'Vacía'), (7, 'Vacía'), (8, 'Vacía');

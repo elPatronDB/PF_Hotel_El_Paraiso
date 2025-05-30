@@ -1,3 +1,20 @@
+<?php
+include 'db_connect.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $usuario = $_POST['usuario'];
+    $contrasena = $_POST['contrasena'];
+    $query = "SELECT * FROM empleado WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
+    $result = mysqli_query($conn, $query);
+    
+    if (mysqli_num_rows($result) > 0) {
+        header('Location: dashboard.php');
+        exit();
+    } else {
+        $error = '<div class="alert alert-danger">Usuario o contraseña incorrectos</div>';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,21 +32,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title text-center" style="font-family: 'Cinzel', serif;">Iniciar Sesión</h3>
-                        <?php
-                        include 'db_connect.php';
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            $usuario = $_POST['usuario'];
-                            $contrasena = md5($_POST['contrasena']);
-                            $query = "SELECT * FROM empleado WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
-                            $result = mysqli_query($conn, $query);
-                            if (mysqli_num_rows($result) > 0) {
-                                header('Location: dashboard.php');
-                                exit;
-                            } else {
-                                echo '<div class="alert alert-danger">Usuario o contraseña incorrectos</div>';
-                            }
-                        }
-                        ?>
+                        <?php if (isset($error)) echo $error; ?>
                         <form method="POST">
                             <div class="mb-3">
                                 <label for="usuario" class="form-label">Usuario</label>

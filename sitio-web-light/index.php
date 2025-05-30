@@ -24,7 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#home">Inicio</a>
                     </li>
-                    <li class="nav-item">
+                       <li class="nav-item">
                         <button type="button" class="btn btn-success nav-link" data-bs-toggle="modal" data-bs-target="#reservaModal" style="border: none; background: #2E4A2D; padding: 1; color: white;">
                             Reservar
                         </button>
