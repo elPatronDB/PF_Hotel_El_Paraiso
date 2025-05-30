@@ -19,14 +19,12 @@
                         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $usuario = $_POST['usuario'];
                             $contrasena = $_POST['contrasena'];
-                            // Fase 1: Login estático
                             if ($usuario === 'admin' && $contrasena === 'admin') {
                                 header('Location: dashboard.php');
                                 exit;
                             } else {
                                 echo '<div class="alert alert-danger">Usuario o contraseña incorrectos</div>';
                             }
-                            // Fase 2: Reemplazar por consulta a MySQL (ver sitio-web-light/login.php o sitio-web-dark/login.php)
                         }
                         ?>
                         <form method="POST">
